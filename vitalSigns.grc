@@ -336,7 +336,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1464, 536.0]
+    coordinate: [1528, 536.0]
     rotation: 0
     state: true
 - name: uhd_usrp_sink_0
