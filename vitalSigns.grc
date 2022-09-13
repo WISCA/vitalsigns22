@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Not titled yet
+    title: Vital Signs GRCon 2022 Demo
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -199,9 +199,9 @@ blocks:
       \ example - a simple multiply const\"\"\"\n\n    def __init__(self, vecSize=2048):\
       \  # only default arguments here\n        \"\"\"arguments to this function show\
       \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
-      \   self,\n            name='Vector Max',   # will show up in GRC\n        \
-      \    in_sig=[(np.complex64, vecSize)],\n            out_sig=[np.float32]\n \
-      \       )\n\n    def work(self, input_items, output_items):\n        \"\"\"\
+      \   self,\n            name='Vector Max Angle',   # will show up in GRC\n  \
+      \          in_sig=[(np.complex64, vecSize)],\n            out_sig=[np.float32]\n\
+      \        )\n\n    def work(self, input_items, output_items):\n        \"\"\"\
       example: multiply with constant\"\"\"\n        for vectorIndex in range(len(input_items[0])):\n\
       \            maxValue = (180/np.pi)*np.angle(np.max(input_items[0][vectorIndex]))\n\
       \            output_items[0][vectorIndex] = maxValue\n        return len(output_items[0])\n"
@@ -212,9 +212,9 @@ blocks:
     minoutbuf: '0'
     vecSize: window_size
   states:
-    _io_cache: ('Vector Max', 'blk', [('vecSize', '2048')], [('0', 'complex', 2048)],
-      [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const',
-      [])
+    _io_cache: ('Vector Max Angle', 'blk', [('vecSize', '2048')], [('0', 'complex',
+      2048)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply
+      const', [])
     bus_sink: false
     bus_source: false
     bus_structure: null
