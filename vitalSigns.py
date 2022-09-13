@@ -36,6 +36,7 @@ from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
 from gnuradio import uhd
 import time
+from gnuradio import zeromq
 from gnuradio.qtgui import Range, RangeWidget
 from PyQt5 import QtCore
 import vitalSigns_epy_block_0 as epy_block_0  # embedded python block
@@ -84,7 +85,7 @@ class vitalSigns(gr.top_block, Qt.QWidget):
         self.tx_gain = tx_gain = 55
         self.samp_rate = samp_rate = 500e3
         self.rx_gain = rx_gain = 55
-        self.freq = freq = 5.5e9
+        self.freq = freq = 4e9
         self.display_buffer = display_buffer = 5000
         self.decimRate = decimRate = 1
         self.amplitude = amplitude = 0.9
@@ -98,6 +99,7 @@ class vitalSigns(gr.top_block, Qt.QWidget):
         self._rx_gain_range = Range(0, 100, 1, 55, 200)
         self._rx_gain_win = RangeWidget(self._rx_gain_range, self.set_rx_gain, "'rx_gain'", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._rx_gain_win)
+        self.zeromq_push_sink_0 = zeromq.push_sink(gr.sizeof_float, 1, 'tcp://127.0.0.1:5557', 100, False, -1)
         self.uhd_usrp_source_0 = uhd.usrp_source(
             ",".join(("", '')),
             uhd.stream_args(
@@ -189,6 +191,7 @@ class vitalSigns(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_0_0, 0), (self.uhd_usrp_sink_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.epy_block_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.epy_block_0, 0), (self.zeromq_push_sink_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.epy_block_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.blocks_stream_to_vector_0, 0))
 

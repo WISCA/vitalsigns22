@@ -73,7 +73,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 5.5e9
+    value: 4e9
   states:
     bus_sink: false
     bus_source: false
@@ -336,7 +336,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1528, 536.0]
+    coordinate: [1488, 536.0]
     rotation: 0
     state: true
 - name: uhd_usrp_sink_0
@@ -1052,11 +1052,31 @@ blocks:
     coordinate: [312, 488.0]
     rotation: 0
     state: true
+- name: zeromq_push_sink_0
+  id: zeromq_push_sink
+  parameters:
+    address: tcp://127.0.0.1:5557
+    affinity: ''
+    alias: ''
+    comment: ''
+    hwm: '-1'
+    pass_tags: 'False'
+    timeout: '100'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1488, 408.0]
+    rotation: 0
+    state: true
 
 connections:
 - [analog_sig_source_x_0_0, '0', uhd_usrp_sink_0, '0']
 - [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
 - [epy_block_0, '0', qtgui_time_sink_x_0, '0']
+- [epy_block_0, '0', zeromq_push_sink_0, '0']
 - [fft_vxx_0, '0', epy_block_0, '0']
 - [uhd_usrp_source_0, '0', blocks_stream_to_vector_0, '0']
 
