@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 
 # Real-Time Stream 5 seconds worth of data before cycling it out
 samp_rate = 500e3
-window_size = 2048
+window_size = 100
 data_rate = samp_rate/window_size
-plot_time = 5
+plot_time = 10
 num_plot_samps = int(np.ceil(5*data_rate))
-data_samps = []
+data_samps = np.zeros(num_plot_samps)
 plot_samps = np.zeros(num_plot_samps)
 plot_range = np.arange(0,num_plot_samps)/data_rate
 avg_interval = 15 # Processing Interval (Seconds)
@@ -30,7 +30,7 @@ def zmq_handler():
         data = np.frombuffer(buff, dtype="float32")
         n_rx_samps += data.size
         data_samps = np.concatenate((data_samps, data),axis=None)
-        plot_samps = data_samps[-num_plot_samps:]
+        plot_samps = np.unwrap(data_samps[-num_plot_samps:])
 
 if __name__ == '__main__':
     thread = threading.Thread(target=zmq_handler)
@@ -41,9 +41,10 @@ if __name__ == '__main__':
     line, = plt.plot(plot_range, plot_samps)
     plt.ion()
     plt.show()
-    plt.ylim([-180, 180])
     while True:
         plt.pause(1)
+        plt.ylim([np.min(plot_samps), np.max(plot_samps)])
         line.set_ydata(plot_samps)
         plt.draw()
-        print(plot_samps)
+        plt.autoscale()
+        #print(plot_samps)
