@@ -3,6 +3,7 @@ import zmq
 import threading
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 # Real-Time Stream 5 seconds worth of data before cycling it out
 samp_rate = 500e3
@@ -21,6 +22,13 @@ consumer_receiver = context.socket(zmq.PULL)
 consumer_receiver.connect("tcp://127.0.0.1:5557")
 n_rx_samps = 0
 
+def update(frame):
+    line.set_ydata(plot_samps)
+    fig.gca().relim()
+    fig.gca().autoscale_view()
+    return line,
+
+
 def zmq_handler():
     global data_samps
     global plot_samps
@@ -37,14 +45,7 @@ if __name__ == '__main__':
     thread.daemon = True
     thread.start()
 
-    plt.figure()
+    fig = plt.figure()
     line, = plt.plot(plot_range, plot_samps)
-    plt.ion()
+    animation = FuncAnimation(fig, update, interval=1000)
     plt.show()
-    while True:
-        plt.pause(1)
-        plt.ylim([np.min(plot_samps), np.max(plot_samps)])
-        line.set_ydata(plot_samps)
-        plt.draw()
-        plt.autoscale()
-        #print(plot_samps)
