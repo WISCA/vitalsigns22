@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1152, 12.0]
+    coordinate: [712, 8.0]
     rotation: 0
     state: enabled
 - name: decimRate
@@ -54,19 +54,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 12.0]
-    rotation: 0
-    state: true
-- name: display_buffer
-  id: variable
-  parameters:
-    comment: ''
-    value: int((samp_rate/decimRate)*10)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1008, 12.0]
+    coordinate: [624, 8.0]
     rotation: 0
     state: true
 - name: freq
@@ -78,7 +66,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 12.0]
+    coordinate: [248, 8.0]
     rotation: 0
     state: true
 - name: rx_gain
@@ -99,7 +87,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [600, 8.0]
+    coordinate: [424, 8.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -111,7 +99,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [224, 12.0]
+    coordinate: [160, 8.0]
     rotation: 0
     state: enabled
 - name: tx_gain
@@ -132,7 +120,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [448, 8.0]
+    coordinate: [320, 8.0]
     rotation: 0
     state: true
 - name: window_size
@@ -144,7 +132,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 12.0]
+    coordinate: [528, 8.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_0
@@ -166,7 +154,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 244.0]
+    coordinate: [688, 116.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_arg_0
@@ -182,7 +170,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1472, 564.0]
+    coordinate: [848, 372.0]
     rotation: 0
     state: true
 - name: blocks_multiply_conjugate_cc_0
@@ -198,7 +186,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [872, 556.0]
+    coordinate: [208, 468.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -218,7 +206,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1168, 516.0]
+    coordinate: [544, 336.0]
     rotation: 0
     state: true
 - name: uhd_usrp_sink_0
@@ -495,7 +483,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [840, 228.0]
+    coordinate: [1112, 100.0]
     rotation: 0
     state: true
 - name: uhd_usrp_source_0
@@ -931,7 +919,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [312, 496.0]
+    coordinate: [96, 168.0]
     rotation: 0
     state: true
 - name: zeromq_push_sink_0
@@ -950,7 +938,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1720, 528.0]
+    coordinate: [872, 552.0]
     rotation: 0
     state: enabled
 

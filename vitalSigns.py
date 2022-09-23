@@ -78,13 +78,12 @@ class vitalSigns(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 500e3
-        self.decimRate = decimRate = 100
         self.window_size = window_size = 2048
         self.tx_gain = tx_gain = 55
+        self.samp_rate = samp_rate = 500e3
         self.rx_gain = rx_gain = 55
         self.freq = freq = 4e9
-        self.display_buffer = display_buffer = int((samp_rate/decimRate)*10)
+        self.decimRate = decimRate = 100
         self.amplitude = amplitude = 0.9
 
         ##################################################
@@ -157,25 +156,6 @@ class vitalSigns(gr.top_block, Qt.QWidget):
 
         event.accept()
 
-    def get_samp_rate(self):
-        return self.samp_rate
-
-    def set_samp_rate(self, samp_rate):
-        self.samp_rate = samp_rate
-        self.set_display_buffer(int((self.samp_rate/self.decimRate)*10))
-        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
-        self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_sink_0.set_bandwidth(self.samp_rate, 0)
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_source_0.set_bandwidth(self.samp_rate, 0)
-
-    def get_decimRate(self):
-        return self.decimRate
-
-    def set_decimRate(self, decimRate):
-        self.decimRate = decimRate
-        self.set_display_buffer(int((self.samp_rate/self.decimRate)*10))
-
     def get_window_size(self):
         return self.window_size
 
@@ -189,6 +169,17 @@ class vitalSigns(gr.top_block, Qt.QWidget):
     def set_tx_gain(self, tx_gain):
         self.tx_gain = tx_gain
         self.uhd_usrp_sink_0.set_gain(self.tx_gain, 0)
+
+    def get_samp_rate(self):
+        return self.samp_rate
+
+    def set_samp_rate(self, samp_rate):
+        self.samp_rate = samp_rate
+        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
+        self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+        self.uhd_usrp_sink_0.set_bandwidth(self.samp_rate, 0)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.uhd_usrp_source_0.set_bandwidth(self.samp_rate, 0)
 
     def get_rx_gain(self):
         return self.rx_gain
@@ -205,11 +196,11 @@ class vitalSigns(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_center_freq(self.freq, 0)
         self.uhd_usrp_source_0.set_center_freq(self.freq, 0)
 
-    def get_display_buffer(self):
-        return self.display_buffer
+    def get_decimRate(self):
+        return self.decimRate
 
-    def set_display_buffer(self, display_buffer):
-        self.display_buffer = display_buffer
+    def set_decimRate(self, decimRate):
+        self.decimRate = decimRate
 
     def get_amplitude(self):
         return self.amplitude
